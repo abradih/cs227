@@ -62,7 +62,10 @@ public class AlarmClock {
 	}
 
 	public String getAlarmTimeAsString() {
-		return (alarmTime / 60) + ":" + (alarmTime % 60);
+		int hours = (alarmTime / 60); 
+		int minutes = (alarmTime % 60);
+		String timeString = String.format("%02d:%02d", hours, minutes);
+		return timeString;
 	}
 
 	public int getClockTime() {
@@ -70,7 +73,10 @@ public class AlarmClock {
 	}
 
 	public String getClockTimeAsString() {
-		return (time / 60) + ":" + (time % 60);
+		int hours = (time / 60); 
+		int minutes = (time % 60);
+		String timeString = String.format("%02d:%02d", hours, minutes);
+		return timeString;
 	}
 
 	public int getEffectiveAlarmTime() {
