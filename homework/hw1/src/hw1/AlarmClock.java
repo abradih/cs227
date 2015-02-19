@@ -7,80 +7,98 @@ package hw1;
  *
  */
 public class AlarmClock {
-	private int hours;
-	private int minutes;
+
+	public static final int SNOOZE_MINUTES = 9;
+	public static final int MINUTES_PER_DAY = 1440;
+
+	private int time;
+	private int alarmTime;
+	private boolean alarmOn;
 
 	/**
-	 * Makes alarm clock with given parameters.
+	 * Makes an alarm clock with given time.
 	 * 
-	 * @param givenHours
-	 * @param givenMinutes
+	 * @param hours
+	 * @param minutes
 	 */
 	public AlarmClock(int hours, int minutes) {
-		this.hours = hours;
-		this.minutes = minutes;
-
+		time = hours * 60;
+		time = time + minutes;
+		time = time % MINUTES_PER_DAY;
+		this.alarmTime = 60;
+		alarmOn = false;
 	}
 
 	/**
-	 * Makes alarm clock time set at midnight and alarm set at 1:00.
+	 * Makes alarm clock with set time at midnight.
 	 */
 	public AlarmClock() {
-		hours = 0;
-		minutes = 0;
+		time = 0;
+		alarmTime = 60;
+		alarmOn = false;
 	}
 
 	public void advanceTime(int minutes) {
-		this.minutes = minutes;
+		time = time + minutes;
+		time = time % MINUTES_PER_DAY;
 	}
 
 	public void advanceTime(int hours, int minutes) {
-		this.hours = this.hours + hours;
-		this.minutes = this.minutes + minutes;
+		time = time + (hours * 60);
+		time = time + minutes;
+		time = time % MINUTES_PER_DAY;
 	}
 
 	public void alarmOff() {
-
+		alarmOn = false;
 	}
 
 	public void alarmOn() {
-
+		alarmOn = true;
 	}
 
 	public int getAlarmTime() {
-		return 0;
+		return alarmTime;
 	}
 
 	public String getAlarmTimeAsString() {
-		return "00:00";
+		return (alarmTime / 60) + ":" + (alarmTime % 60);
 	}
 
 	public int getClockTime() {
-		return 0;
+		return time;
 	}
 
 	public String getClockTimeAsString() {
-		return "00:00";
+		return (time / 60) + ":" + (time % 60);
 	}
 
 	public int getEffectiveAlarmTime() {
-		return 0;
+		return getAlarmTime();
 	}
 
 	public String getEffectiveAlarmTimeAsString() {
-		return "00:00";
+		return getAlarmTimeAsString();
 	}
 
 	public boolean isRinging() {
-		return true;
+		return (time == alarmTime) && alarmOn;
 	}
 
 	public void setAlarmTime(int hours, int minutes) {
+		alarmTime = hours * 60;
+		alarmTime = alarmTime + minutes;
+		alarmTime = alarmTime % MINUTES_PER_DAY;
 	}
 
 	public void setTime(int hours, int minutes) {
+		time = hours * 60;
+		time = time + minutes;
+		time = time % MINUTES_PER_DAY;
 	}
 
 	public void snooze() {
+		alarmTime = alarmTime + SNOOZE_MINUTES;
+		alarmTime = alarmTime % MINUTES_PER_DAY;
 	}
 }
