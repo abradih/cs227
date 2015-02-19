@@ -11,8 +11,8 @@ public class AlarmClockTest {
 		clock.alarmOn();
 		clock.advanceTime(30);
 		System.out.println(clock.isRinging());
-		clock.advanceTime(5);
 		clock.snooze();
+		clock.advanceTime(10);
 		System.out.println(clock.isRinging());
 		System.out.println(clock.getAlarmTimeAsString());
 		System.out.println(clock.getEffectiveAlarmTimeAsString());

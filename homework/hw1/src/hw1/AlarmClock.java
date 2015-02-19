@@ -13,6 +13,7 @@ public class AlarmClock {
 
 	private int time;
 	private int alarmTime;
+	private int effectiveAlarmTime;
 	private boolean alarmOn;
 
 	/**
@@ -25,7 +26,8 @@ public class AlarmClock {
 		time = hours * 60;
 		time = time + minutes;
 		time = time % MINUTES_PER_DAY;
-		this.alarmTime = 60;
+		alarmTime = 60;
+		effectiveAlarmTime = alarmTime;
 		alarmOn = false;
 	}
 
@@ -35,6 +37,7 @@ public class AlarmClock {
 	public AlarmClock() {
 		time = 0;
 		alarmTime = 60;
+		effectiveAlarmTime = alarmTime;
 		alarmOn = false;
 	}
 
@@ -62,7 +65,7 @@ public class AlarmClock {
 	}
 
 	public String getAlarmTimeAsString() {
-		int hours = (alarmTime / 60); 
+		int hours = (alarmTime / 60);
 		int minutes = (alarmTime % 60);
 		String timeString = String.format("%02d:%02d", hours, minutes);
 		return timeString;
@@ -73,28 +76,26 @@ public class AlarmClock {
 	}
 
 	public String getClockTimeAsString() {
-		int hours = (time / 60); 
-		int minutes = (time % 60);
-		String timeString = String.format("%02d:%02d", hours, minutes);
-		return timeString;
+		return stringTime(time);
 	}
 
 	public int getEffectiveAlarmTime() {
-		return getAlarmTime();
+		return effectiveAlarmTime;
 	}
 
 	public String getEffectiveAlarmTimeAsString() {
-		return getAlarmTimeAsString();
+		return stringTime(effectiveAlarmTime);
 	}
 
 	public boolean isRinging() {
-		return (time == alarmTime) && alarmOn;
+		return (time >= alarmTime) && alarmOn;
 	}
 
 	public void setAlarmTime(int hours, int minutes) {
 		alarmTime = hours * 60;
 		alarmTime = alarmTime + minutes;
 		alarmTime = alarmTime % MINUTES_PER_DAY;
+		effectiveAlarmTime = alarmTime;
 	}
 
 	public void setTime(int hours, int minutes) {
@@ -104,7 +105,14 @@ public class AlarmClock {
 	}
 
 	public void snooze() {
-		alarmTime = alarmTime + SNOOZE_MINUTES;
-		alarmTime = alarmTime % MINUTES_PER_DAY;
+		effectiveAlarmTime = time + SNOOZE_MINUTES;
+		effectiveAlarmTime = effectiveAlarmTime % MINUTES_PER_DAY;
+	}
+
+	private String stringTime(int clockTime) {
+		int hours = (clockTime / 60);
+		int minutes = (clockTime % 60);
+		String timeString = String.format("%02d:%02d", hours, minutes);
+		return timeString;
 	}
 }
