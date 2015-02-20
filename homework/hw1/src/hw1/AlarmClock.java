@@ -15,6 +15,7 @@ public class AlarmClock {
 	private int alarmTime;
 	private int effectiveAlarmTime;
 	private boolean alarmOn;
+	private boolean ringing;
 
 	/**
 	 * Makes an alarm clock with given time.
@@ -29,6 +30,7 @@ public class AlarmClock {
 		alarmTime = 60;
 		effectiveAlarmTime = alarmTime;
 		alarmOn = false;
+		ringing = false;
 	}
 
 	/**
@@ -39,17 +41,18 @@ public class AlarmClock {
 		alarmTime = 60;
 		effectiveAlarmTime = alarmTime;
 		alarmOn = false;
+		ringing = false;
 	}
 
 	public void advanceTime(int minutes) {
+		int preTime = time;
 		time = time + minutes;
 		time = time % MINUTES_PER_DAY;
+		ringing = (preTime < effectiveAlarmTime) && (time <= effectiveAlarmTime);	
 	}
 
 	public void advanceTime(int hours, int minutes) {
-		time = time + (hours * 60);
-		time = time + minutes;
-		time = time % MINUTES_PER_DAY;
+		advanceTime((hours * 60) + minutes); 
 	}
 
 	public void alarmOff() {
@@ -88,7 +91,7 @@ public class AlarmClock {
 	}
 
 	public boolean isRinging() {
-		return (time >= alarmTime) && alarmOn;
+		return ringing && alarmOn;
 	}
 
 	public void setAlarmTime(int hours, int minutes) {
@@ -105,8 +108,10 @@ public class AlarmClock {
 	}
 
 	public void snooze() {
-		effectiveAlarmTime = time + SNOOZE_MINUTES;
-		effectiveAlarmTime = effectiveAlarmTime % MINUTES_PER_DAY;
+		if (ringing){
+			effectiveAlarmTime = time + SNOOZE_MINUTES;
+			effectiveAlarmTime = effectiveAlarmTime % MINUTES_PER_DAY;
+		}
 	}
 
 	private String stringTime(int clockTime) {
