@@ -45,10 +45,13 @@ public class AlarmClock {
 	}
 
 	public void advanceTime(int minutes) {
-		int preTime = time;
+		int minutesTillAlarm = effectiveAlarmTime - time;
+		if (effectiveAlarmTime < time){
+			minutesTillAlarm = (MINUTES_PER_DAY - time) + effectiveAlarmTime;
+		}
 		time = time + minutes;
 		time = time % MINUTES_PER_DAY;
-		ringing = (preTime < effectiveAlarmTime) && (time <= effectiveAlarmTime);	
+		ringing = (minutesTillAlarm != 0 || minutes >= MINUTES_PER_DAY) && (minutes >= minutesTillAlarm);	
 	}
 
 	public void advanceTime(int hours, int minutes) {
@@ -57,6 +60,7 @@ public class AlarmClock {
 
 	public void alarmOff() {
 		alarmOn = false;
+		effectiveAlarmTime = alarmTime;
 	}
 
 	public void alarmOn() {
@@ -105,12 +109,14 @@ public class AlarmClock {
 		time = hours * 60;
 		time = time + minutes;
 		time = time % MINUTES_PER_DAY;
+		effectiveAlarmTime = alarmTime;
 	}
 
 	public void snooze() {
 		if (ringing){
 			effectiveAlarmTime = time + SNOOZE_MINUTES;
 			effectiveAlarmTime = effectiveAlarmTime % MINUTES_PER_DAY;
+			ringing = false;
 		}
 	}
 
