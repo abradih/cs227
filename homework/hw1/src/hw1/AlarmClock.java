@@ -17,11 +17,29 @@ public class AlarmClock {
 	 */
 	public static final int MINUTES_PER_DAY = 1440;
 
-	// instance variables to keep track of alarm clock state.
+	/**
+	 * Instance variable for clock time.
+	 */
 	private int time;
+	
+	/**
+	 * Instance variable for alarm time.
+	 */
 	private int alarmTime;
+	
+	/**
+	 * Instance variable for effective alarm time, the alarm time after snooze.
+	 */
 	private int effectiveAlarmTime;
+	
+	/**
+	 * Instance variable for tracking if alarm is on (true) or off (false).
+	 */
 	private boolean alarmOn;
+	
+	/**
+	 * Instance variable for tracking if alarm is ringing (true) or not ringing (false).
+	 */
 	private boolean ringing;
 
 	/**
