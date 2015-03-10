@@ -24,16 +24,16 @@ public class Plotter {
 					pixelWidth = Integer.parseInt(entry[word]);
 					word++;
 				}
-				System.out.println(pixelWidth);
+//				System.out.println(pixelWidth);
 
 				String color = entry[word];
-				System.out.println(color);
+//				System.out.println(color);
 				
 				boolean first = true;
 				for (int i = word + 1; i < entry.length; i = i + 2) {
 					int x = Integer.parseInt(entry[i]);
 					int y = Integer.parseInt(entry[i + 1]);
-					System.out.println(x + "," + y);
+//					System.out.println(x + "," + y);
 					if(first){
 						first = false;
 						plotter.startLine(color, new Point(x, y), pixelWidth);
