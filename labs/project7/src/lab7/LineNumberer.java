@@ -3,24 +3,30 @@ package lab7;
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 
 public class LineNumberer {
 	public static void main(String[] args) throws FileNotFoundException {
-		File file = new File("story.txt");
-	    System.out.println(file.exists());          // true if the file exists
-	    System.out.println(file.getName());         // name of the file 
-	    System.out.println(file.getAbsolutePath()); // absolute path to the file
-	    System.out.println(file.length());          // size of the file
-		Scanner scanner = new Scanner(file);
+		File inFile = new File("src\\lab7\\LineNumberer.java");
+		Scanner in = new Scanner(inFile);
+		File outFile = new File("LineNumberer2.txt");
+		PrintWriter out = new PrintWriter(outFile);
+		System.out.println(outFile.exists()); // true if the file exists
+		System.out.println(outFile.getName()); // name of the file
+		System.out.println(outFile.getAbsolutePath()); // absolute path to the
+														// file
+		System.out.println(outFile.length()); // size of the file
 		int lineCount = 1;
 
-		while (scanner.hasNextLine()) {
-			String line = scanner.nextLine();
-			System.out.print(lineCount + " ");
-			System.out.println(line);
+		while (in.hasNextLine()) {
+			String line = in.nextLine();
+			out.print(lineCount + " ");
+			out.println(line);
 			lineCount += 1;
 		}
-		scanner.close();
+		in.close();
+		out.close();
+
 		System.out.println("Done");
 	}
 }
