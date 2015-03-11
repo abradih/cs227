@@ -10,7 +10,7 @@ public class TallyString {
 	public static final char STAR = '*';
 	public static final char LINE = '|';
 	public static final int STAR_VALUE = 5;
-	public static final int LINE_VALUE = 1;
+	private static final int LINE_VALUE = 1;
 
 	public static boolean isValidGroup(String s) {
 		boolean result = false;
@@ -87,6 +87,13 @@ public class TallyString {
 	}
 
 	public static int evaluateString(String s) {
+		s = s.trim();
+		while (!s.equals(s.replaceAll("  ", " "))){
+			s = s.replaceAll("  ", " ");
+		}
+		if (s.equals("")){
+			return -1;
+		}
 		int result = 0;
 		String[] groups = s.split(" ");
 		int power = 1;
