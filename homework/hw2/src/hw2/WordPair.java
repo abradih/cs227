@@ -69,7 +69,35 @@ public class WordPair {
 	 *            number of spaces to the right to move the character
 	 */
 	public void moveRight(int index, int howFar) {
-		// TODO
+		// if index is in range of word
+		if (index < scrambledWord.length()) {
+			// if howFar is not negative
+			if (howFar > 0) {
+				// if index plus howFar is within the range of word
+				if (index + howFar < scrambledWord.length()) {
+					// if the the letter is not revealed by hint
+					if (index >= getNumLetterHints()) {
+						String result = "";
+						// if the index is not first character
+						if (index > 0) {
+							// stores string up to index
+							result = scrambledWord.substring(0, index - 1);
+						}
+						// stores character to be moved
+						char toMove = scrambledWord.charAt(index);
+						// adds onto stored string to the point in which index
+						// character is to be added
+						result = result + scrambledWord.substring(index + 1, index + howFar);
+						// adds the index character to end of result
+						result = result + toMove;
+						// adds the rest of the string after the addition
+						result = result + scrambledWord.substring(index + howFar, scrambledWord.length());
+						// stores the result as scrambledWord
+						scrambledWord = result;
+					}
+				}
+			}
+		}
 	}
 
 	/**
@@ -88,7 +116,33 @@ public class WordPair {
 	 *            number of spaces to the left to move the character
 	 */
 	public void moveLeft(int index, int howFar) {
-		// TODO
+		// if index is in range of word
+		if (index < scrambledWord.length()) {
+			// if howFar is not negative
+			if (howFar > 0) {
+				// if index minus howFar is within the range of word
+				if (index - howFar >= 0) {
+					// if the the letter is not revealed by hint
+					if (index >= getNumLetterHints()) {
+						// stores character to be moved
+						String result = "";
+						char toMove = scrambledWord.charAt(index);
+						// stores end of string from word
+						result = scrambledWord.substring(index + 1, scrambledWord.length());
+						// adds index character then characters between howFar
+						// and index then the end of the word
+						result = toMove + scrambledWord.substring(index - howFar, index) + result;
+						// if there characters before the moved character
+						if (index - howFar > 0) {
+							// adds the beginning of the word to result
+							result = scrambledWord.substring(0, index - howFar - 1) + result;
+						}
+						// stores the result as scrambledWord
+						scrambledWord = result;
+					}
+				}
+			}
+		}
 	}
 
 	/**
