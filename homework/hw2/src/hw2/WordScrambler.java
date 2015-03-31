@@ -29,14 +29,7 @@ public class WordScrambler {
 	 *         permutation
 	 */
 	public static String scramble(String word, PermutationGenerator gen) {
-		// generate permutation array for word.
-		int[] perm = gen.generate(word.length());
-		String result = "";
-		// for each permutation it copies the character from word, stores to results
-		for (int i = 0; i < perm.length; i++) {
-			result = result + word.charAt(perm[i]);
-		}
-		return result;
+		return scramble(word, 0, gen);
 	}
 
 	/**
@@ -56,8 +49,14 @@ public class WordScrambler {
 	 *         appropriately sized permutation
 	 */
 	public static String scramble(String word, int fixedCount, PermutationGenerator gen) {
-		// TODO
-		return word;
+		// generate permutation array for word.
+		int[] perm = gen.generate(word.length());
+		String result = "";
+		// for each permutation it copies the character from word, stores to results
+		for (int i = fixedCount; i < perm.length; i++) {
+			result = result + word.charAt(perm[i]);
+		}
+		return result;
 	}
 
 }
