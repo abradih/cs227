@@ -25,7 +25,7 @@ public class Words {
 	 *             if the word file cannot be opened
 	 */
 	public Words(String filename) throws FileNotFoundException {
-		File wordsFile = new File("words.txt");
+		File wordsFile = new File(filename);
 		Scanner scanner = new Scanner(wordsFile);
 		// while there are more lines...
 		while (scanner.hasNextLine()) {
