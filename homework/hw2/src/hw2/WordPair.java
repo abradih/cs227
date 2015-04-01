@@ -18,6 +18,10 @@ public class WordPair {
 	 * Stores scrabbled word
 	 */
 	private String scrambledWord;
+	/**
+	 * Stores number of hints given
+	 */
+	private int numLetterHints;
 
 	/**
 	 * Constructs an instance of WordPair with the given strings. This
@@ -153,8 +157,7 @@ public class WordPair {
 	 * @return number of fixed characters at the beginning of the scrambled word
 	 */
 	public int getNumLetterHints() {
-		// TODO
-		return 0;
+		return numLetterHints;
 	}
 
 	/**
@@ -178,7 +181,35 @@ public class WordPair {
 	 * return 3, and the characters at indices 0, 1, and 2 will be not be moved.
 	 */
 	public void doLetterHint() {
-		// TODO
+		if (numLetterHints < scrambledWord.length()) {
+			char toFind = realWord.charAt(numLetterHints);
+			char toMove = scrambledWord.charAt(numLetterHints);
+			if (toFind != toMove) {
+				String result = "";
+				// copies letter up to hint to be done
+				for (int i = 0; i < numLetterHints; i++) {
+					result = result + scrambledWord.charAt(i);
+				}
+				// replace hint index with the letter
+				result = result + toFind;
+				// copies letters up to letter toFind
+				boolean found = false;
+				for (int i = numLetterHints + 1; i < scrambledWord.length(); i++) {
+					// if it is the letter toFind and it hasn't been found yet
+					if (toFind == scrambledWord.charAt(i) && !found) {
+						// replace toFind with toMove
+						result = result + toMove;
+						found = true;
+					} else {
+						// copies the next letter
+						result = result + scrambledWord.charAt(i);
+					}
+
+				}
+				scrambledWord = result;
+			}
+			numLetterHints++;
+		}
 	}
 
 	/**
@@ -197,7 +228,7 @@ public class WordPair {
 	 *            permutation generator for scrambling the non-fixed letters
 	 */
 	public void rescramble(PermutationGenerator gen) {
-		// TODO
+		scrambledWord = WordScrambler.scramble(getScrambledWord(), getNumLetterHints(), gen);
 	}
 
 	/**
@@ -208,8 +239,19 @@ public class WordPair {
 	 *         scrambled word to obtain the real word
 	 */
 	public boolean isSolutionPossible() {
-		// TODO
-		return true;
+		// store original hint number and scrambled word
+		int hints = numLetterHints;
+		String scrambled = scrambledWord;
+		// use hints to solve srambledWord to realWord
+		for (int i = 0; i < scrambledWord.length(); i++) {
+			doLetterHint();
+		}
+		// check if solved word is realWord
+		boolean equals = scrambledWord.equalsIgnoreCase(realWord);
+		// restore original values
+		numLetterHints = hints;
+		scrambledWord = scrambled;
+		return equals;
 	}
 
 	/**
@@ -220,8 +262,7 @@ public class WordPair {
 	 *         otherwise
 	 */
 	public boolean checkSolution() {
-		// TODO
-		return false;
+		return scrambledWord.equalsIgnoreCase(realWord);
 	}
 
 	/**
@@ -231,7 +272,6 @@ public class WordPair {
 	 * @return true if given word and real word are the same, false otherwise
 	 */
 	public boolean checkSolution(String solution) {
-		// TODO
-		return false;
+		return solution.equalsIgnoreCase(realWord);
 	}
 }
