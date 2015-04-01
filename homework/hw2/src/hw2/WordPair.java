@@ -85,17 +85,16 @@ public class WordPair {
 						// if the index is not first character
 						if (index > 0) {
 							// stores string up to index
-							result = scrambledWord.substring(0, index - 1);
+							result = scrambledWord.substring(0, index);
 						}
 						// stores character to be moved
 						char toMove = scrambledWord.charAt(index);
-						// adds onto stored string to the point in which index
-						// character is to be added
-						result = result + scrambledWord.substring(index + 1, index + howFar);
+						// copy the letters in between the index and howFar
+						result = result + scrambledWord.substring(index + 1, index + howFar + 1);
 						// adds the index character to end of result
 						result = result + toMove;
 						// adds the rest of the string after the addition
-						result = result + scrambledWord.substring(index + howFar, scrambledWord.length());
+						result = result + scrambledWord.substring(index + howFar + 1, scrambledWord.length());
 						// stores the result as scrambledWord
 						scrambledWord = result;
 					}
@@ -139,7 +138,7 @@ public class WordPair {
 						// if there characters before the moved character
 						if (index - howFar > 0) {
 							// adds the beginning of the word to result
-							result = scrambledWord.substring(0, index - howFar - 1) + result;
+							result = scrambledWord.substring(0, index - howFar) + result;
 						}
 						// stores the result as scrambledWord
 						scrambledWord = result;
