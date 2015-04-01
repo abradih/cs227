@@ -239,19 +239,53 @@ public class WordPair {
 	 *         scrambled word to obtain the real word
 	 */
 	public boolean isSolutionPossible() {
-		// store original hint number and scrambled word
-		int hints = numLetterHints;
-		String scrambled = scrambledWord;
-		// use hints to solve srambledWord to realWord
-		for (int i = 0; i < scrambledWord.length(); i++) {
-			doLetterHint();
+		// for each letter (c) in the realWord
+		for (int i = 0; i < realWord.length(); i++) {
+			char c = realWord.charAt(i);
+			// count how many letters (c) is in real word
+			int count1 = 0;
+			for (int i2 = 0; i2 < realWord.length(); i2++) {
+				// increases the count if the letter is (c)
+				if (realWord.charAt(i2) == c) {
+					count1++;
+				}
+			}
+			// count how many letters (c) in scrambledWord
+			int count2 = 0;
+			for (int i2 = 0; i2 < scrambledWord.length(); i2++) {
+				// increases the count if the letter is (c)
+				if (scrambledWord.charAt(i2) == c) {
+					count2++;
+				}
+			}
+			if (count1 != count2) {
+				return false;
+			}
 		}
-		// check if solved word is realWord
-		boolean equals = scrambledWord.equalsIgnoreCase(realWord);
-		// restore original values
-		numLetterHints = hints;
-		scrambledWord = scrambled;
-		return equals;
+		// for each letter (c) in the scrambledWord
+		for (int i = 0; i < scrambledWord.length(); i++) {
+			char c = scrambledWord.charAt(i);
+			// count how many letters (c) is in real word
+			int count1 = 0;
+			for (int i2 = 0; i2 < realWord.length(); i2++) {
+				// increases the count if the letter is (c)
+				if (realWord.charAt(i2) == c) {
+					count1++;
+				}
+			}
+			// count how many letters (c) in scrambledWord
+			int count2 = 0;
+			for (int i2 = 0; i2 < scrambledWord.length(); i2++) {
+				// increases the count if the letter is (c)
+				if (scrambledWord.charAt(i2) == c) {
+					count2++;
+				}
+			}
+			if (count1 != count2) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	/**
