@@ -20,24 +20,25 @@ public class ConwayTransform implements ITransform {
 	@Override
 	public int apply(int[][] elements) {
 		int cell = elements[getRadius()][getRadius()];
+		int result = cell;
 		int numNeighbors = countNeighbors(elements, cell);
 		// rule 1
 		if (numNeighbors < 2){
-			elements[getRadius()][getRadius()] = 0;
+			result = 0;
 		}
 		//rule 2
 		if(cell == 1 && (numNeighbors == 2 || numNeighbors == 3 )){
-			elements[getRadius()][getRadius()] = 1;
+			result = 1;
 		}
 		//rule 3
 		if(numNeighbors > 3){
-			elements[getRadius()][getRadius()] = 0;
+			result = 0;
 		}
 		//rule 4
 		if(cell == 0 && numNeighbors == 3){
-			elements[getRadius()][getRadius()] = 1;
+			result = 1;
 		}
-		return elements[getRadius()][getRadius()];
+		return result;
 	}
 
 	@Override
