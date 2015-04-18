@@ -19,6 +19,12 @@ public class ConwayTransform implements ITransform {
 
 	@Override
 	public int apply(int[][] elements) {
+		int size = (2 * getRadius()) + 1;
+		for (int i = 0; i < elements.length; i++) {
+			if (size != elements.length || size != elements[i].length) {
+				throw new IllegalArgumentException("2*radius+1 is not equal to the given array's width or height");
+			}
+		}
 		int cell = elements[getRadius()][getRadius()];
 		int result = cell;
 		int numNeighbors = countNeighbors(elements, cell);
@@ -51,7 +57,7 @@ public class ConwayTransform implements ITransform {
 		return true;
 	}
 
-	public int countNeighbors(int[][] neighbors, int cell) {
+	private int countNeighbors(int[][] neighbors, int cell) {
 		int result = 0;
 		for (int i = 0; i < neighbors.length; i++) {
 			for (int i2 = 0; i2 < neighbors[i].length; i2++) {

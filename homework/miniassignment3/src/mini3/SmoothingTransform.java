@@ -29,14 +29,14 @@ public class SmoothingTransform implements ITransform {
 		return false;
 	}
 
-	public int avgNeighbors(int[][] neighbors, int cell) {
-		int result = 0;
+	private int avgNeighbors(int[][] neighbors, int cell) {
+		double result = 0;
 		for (int i = 0; i < neighbors.length; i++) {
 			for (int i2 = 0; i2 < neighbors[i].length; i2++) {
 				result = result + neighbors[i][i2];
 			}
 		}
 		result = result - cell;
-		return result/((neighbors.length*2)-1);
+		return (int) Math.round(result/((neighbors.length*2)-1));
 	}
 }

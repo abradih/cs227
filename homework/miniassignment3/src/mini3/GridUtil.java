@@ -74,6 +74,12 @@ public class GridUtil {
 	 *             greater than the given array's width or height
 	 */
 	public static int[][] getSubArray(int[][] arr, int centerRow, int centerCol, int radius, boolean wrapped) {
+		int size = (2 * radius) + 1;
+		for (int i = 0; i < arr.length; i++) {
+			if (size > arr.length || size > arr[i].length) {
+				throw new IllegalArgumentException("2*radius+1 is greater than the given array's width or height");
+			}
+		}
 		int[][] result = new int[(radius * 2) + 1][(radius * 2) + 1];
 		int spot1 = 0; // vertical result index
 		int spot2 = 0; // horizontal result index
@@ -84,17 +90,17 @@ public class GridUtil {
 				if (wrapped == true) {
 					// wraps around arr axis's by mod array length
 					int x = i % arr.length;
-					int y = i2 % arr.length;
 					if (x < 0) {
 						x = x + arr.length;
 					}
+					int y = i2 % arr[x].length;
 					if (y < 0) {
-						y = y + arr.length;
+						y = y + arr[x].length;
 					}
 					result[spot1][spot2] = arr[x][y];
 				} else {
 					// doesn't copy values out bounds
-					if (i >= 0 && i2 >= 0 && i < arr.length && i2 < arr.length) {
+					if (i >= 0 && i2 >= 0 && i < arr.length && i2 < arr[i].length) {
 						result[spot1][spot2] = arr[i][i2];
 					}
 				}
