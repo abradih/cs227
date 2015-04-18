@@ -36,7 +36,6 @@ public class SmoothingTransform implements ITransform {
 				result = result + neighbors[i][i2];
 			}
 		}
-		result = result - cell;
-		return (int) Math.round(result/((neighbors.length*2)-1));
+		return (int) Math.round(result/((double)neighbors.length*neighbors.length));
 	}
 }
