@@ -75,21 +75,33 @@ public class GridUtil {
 	 */
 	public static int[][] getSubArray(int[][] arr, int centerRow, int centerCol, int radius, boolean wrapped) {
 		int[][] result = new int[(radius * 2) + 1][(radius * 2) + 1];
-		if (wrapped == true) {
-			
-		} else {
-			int spot1 = 0;
-			int spot2 = 0;
-			for (int i = centerRow - radius; i <= centerRow + radius; i++) {
-				for (int i2 = centerCol - radius; i2 <= centerCol + radius; i2++) {
-					if (i >= 0 && i2 >= 0 && i < arr.length && i2 < arr[i].length) {
+		int spot1 = 0; // vertical result index
+		int spot2 = 0; // horizontal result index
+		// from min vertical to max arr vertical
+		for (int i = centerRow - radius; i <= centerRow + radius; i++) {
+			// from min horizontal to max arr horizontal
+			for (int i2 = centerCol - radius; i2 <= centerCol + radius; i2++) {
+				if (wrapped == true) {
+					// wraps around arr axis's by mod array length
+					int x = i % arr.length;
+					int y = i2 % arr.length;
+					if (x < 0) {
+						x = x + arr.length;
+					}
+					if (y < 0) {
+						y = y + arr.length;
+					}
+					result[spot1][spot2] = arr[x][y];
+				} else {
+					// doesn't copy values out bounds
+					if (i >= 0 && i2 >= 0 && i < arr.length && i2 < arr.length) {
 						result[spot1][spot2] = arr[i][i2];
 					}
-					spot2++;
 				}
-				spot2 = 0;
-				spot1++;
+				spot2++;
 			}
+			spot2 = 0;
+			spot1++;
 		}
 		return result;
 	}

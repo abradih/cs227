@@ -15,7 +15,7 @@ public class Test {
 		arr[3][1] = 1;
 		arr[4][0] = 1;
 
-		GridUtil.getSubArray(arr, 4, 4, 1, false);
+		GridUtil.getSubArray(arr, 4, 4, 1, true);
 		
 
 	}
