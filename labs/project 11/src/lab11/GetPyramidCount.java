@@ -1,6 +1,6 @@
 package lab11;
 
-public class getPyramidCount {
+public class GetPyramidCount {
 
 	public static void main(String[] args) {
 		System.out.println(countBalls(7));
