@@ -10,8 +10,10 @@ public class FileSize {
 
 	public static long countBytes(File f) {
 		if (f.isFile()) {
+			// base case
 			return f.length();
 		} else {
+			// general case
 			long result = 0;
 			File[] a = f.listFiles();
 			for (int i = 0; i < a.length; i++) {

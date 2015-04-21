@@ -23,10 +23,12 @@ public class FindFiles {
 	// recursive helper method
 	private static void findFiles(File file, ArrayList<String> list) {
 		if (file.isFile()) {
+			// base case
 			if(file.getName().endsWith(".java")){
 				list.add(file.getName());	
 			}
 		} else {
+			// general case
 			File[] a = file.listFiles();
 			for (int i = 0; i < a.length; i++) {
 				findFiles(a[i], list);

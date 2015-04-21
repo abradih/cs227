@@ -9,9 +9,10 @@ public class GetPyramidCount {
 
 	public static int countBalls(int levels) {
 		if (levels == 1) {
-			// Base case
+			// base case
 			return 1;
 		} else {
+			// general case
 			int result = levels * levels;
 			result = result + countBalls(levels - 1);
 			return result;
