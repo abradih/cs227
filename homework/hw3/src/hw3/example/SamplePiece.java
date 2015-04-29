@@ -1,32 +1,22 @@
 package hw3.example;
 
+import hw3.AbstractPiece;
 import hw3.api.IPolyomino;
 import hw3.api.Position;
 import hw3.impl.AbstractBlockGame;
 import hw3.impl.Block;
 
-public class SamplePiece implements IPolyomino {
-	private Position pos;
-	private Block[] blocks;
+public class SamplePiece extends AbstractPiece {
 
 	public SamplePiece(Position givenPosition) {
-		pos = givenPosition;
+		super(givenPosition);
+		
 		blocks = new Block[2];
 
 		// we'll store positions in the blocks that are relative to the
 		// upper left corner
 		blocks[0] = new Block(AbstractBlockGame.COLORS[0], new Position(0, 0));
 		blocks[1] = new Block(AbstractBlockGame.COLORS[0], new Position(1, 0));
-	}
-
-	@Override
-	public Position getPosition() {
-		return pos;
-	}
-
-	@Override
-	public void initializePosition(Position givenPosition) {
-		pos = givenPosition;
 	}
 
 	@Override
@@ -49,34 +39,7 @@ public class SamplePiece implements IPolyomino {
 	}
 
 	@Override
-	public void initializeBlocks(Block[] givenBlocks) {
-		blocks = givenBlocks;
-
-	}
-
-	@Override
-	public void shiftDown() {
-		pos.setRow(pos.getRow() + 1);
-	}
-
-	@Override
-	public void shiftLeft() {
-		pos.setCol(pos.getCol() - 1);
-	}
-
-	@Override
-	public void shiftRight() {
-		pos.setCol(pos.getCol() + 1);
-	}
-
-	@Override
 	public void transform() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void cycle() {
 		// TODO Auto-generated method stub
 
 	}
@@ -85,12 +48,7 @@ public class SamplePiece implements IPolyomino {
 	public IPolyomino clone() {
 		// The built-in cloning mechanism of the Java runtime will
 		// create an object of the correct runtime type.
-		SamplePiece cloned = null;
-		try {
-			cloned = (SamplePiece) super.clone();
-		} catch (CloneNotSupportedException e) {
-			// can't happen
-		}
+		SamplePiece cloned = (SamplePiece) super.clone();
 
 		// TODO:
 		// Since clone() only gives us a "shallow" copy that shares

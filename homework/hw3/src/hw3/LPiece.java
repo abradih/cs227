@@ -23,12 +23,6 @@ public class LPiece extends AbstractPiece {
 	}
 
 	@Override
-	public void cycle() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public IPolyomino clone() {
 		// TODO Auto-generated method stub
 		return null;

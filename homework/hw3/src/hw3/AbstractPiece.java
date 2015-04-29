@@ -1,5 +1,7 @@
 package hw3;
 
+import java.awt.Color;
+
 import hw3.api.IPolyomino;
 import hw3.api.Position;
 import hw3.impl.Block;
@@ -41,6 +43,19 @@ public abstract class AbstractPiece implements IPolyomino {
 	public void shiftRight() {
 		pos.setCol(pos.getCol() + 1);
 	}
+
+	@Override
+	public void cycle() {
+		// saves color of last block 
+		Color c = blocks[blocks.length - 1].getColorHint();
+		// set each block color to the color of previous block
+		for(int i = blocks.length-1; i > 0; i--){
+			blocks[i].setIcon(blocks[i-1].getColorHint());
+		}
+		// set first block color to that of the last color
+		blocks[0].setIcon(c);
+	}
+	
 	/**
 	 * Returns a deep copy of this object.
 	 * 
