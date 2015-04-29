@@ -56,6 +56,11 @@ public abstract class AbstractPiece implements IPolyomino {
 		blocks[0].setIcon(c);
 	}
 	
+	@Override
+	public void transform() {
+		// TODO Auto-generated method stub
+	}
+	
 	/**
 	 * Returns a deep copy of this object.
 	 * 
