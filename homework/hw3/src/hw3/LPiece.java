@@ -31,8 +31,14 @@ public class LPiece extends AbstractPiece {
 
 	@Override
 	public IPolyomino clone() {
-		// TODO Auto-generated method stub
-		return null;
+		LPiece cloned = (LPiece) super.clone();
+		cloned.pos = new Position(pos);
+		cloned.blocks = new Block[4];
+		cloned.blocks[0] = new Block(blocks[0]);
+		cloned.blocks[1] = new Block(blocks[1]);
+		cloned.blocks[2] = new Block(blocks[2]);
+		cloned.blocks[3] = new Block(blocks[3]);
+		return cloned;
 	}
 
 }

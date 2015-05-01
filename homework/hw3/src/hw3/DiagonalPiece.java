@@ -29,8 +29,12 @@ public class DiagonalPiece extends AbstractPiece {
 
 	@Override
 	public IPolyomino clone() {
-		// TODO Auto-generated method stub
-		return null;
+		DiagonalPiece cloned = (DiagonalPiece) super.clone();
+		cloned.pos = new Position(pos);
+		cloned.blocks = new Block[2];
+		cloned.blocks[0] = new Block(blocks[0]);
+		cloned.blocks[1] = new Block(blocks[1]);
+		return cloned;
 	}
 
 

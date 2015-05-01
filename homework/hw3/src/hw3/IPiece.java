@@ -10,8 +10,8 @@ public class IPiece extends AbstractPiece {
 
 	public IPiece(Position givenPosition, Color[] colors) {
 		super(givenPosition);
-		if (colors.length != 3){
-			throw new IllegalArgumentException("Array should have 3 colors!"); 
+		if (colors.length != 3) {
+			throw new IllegalArgumentException("Array should have 3 colors!");
 		}
 		blocks = new Block[3];
 
@@ -35,8 +35,16 @@ public class IPiece extends AbstractPiece {
 
 	@Override
 	public IPolyomino clone() {
-		// TODO Auto-generated method stub
-		return null;
+		// The built-in cloning mechanism of the Java runtime will
+		// create an object of the correct runtime type.
+		IPiece cloned = (IPiece) super.clone();
+		cloned.pos = new Position(pos);
+		cloned.blocks = new Block[3];
+		cloned.blocks[0] = new Block(blocks[0]);
+		cloned.blocks[1] = new Block(blocks[1]);
+		cloned.blocks[2] = new Block(blocks[2]);
+
+		return cloned;
 	}
 
 }
