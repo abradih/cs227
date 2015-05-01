@@ -18,8 +18,8 @@ public class IPiece extends AbstractPiece {
 		// we'll store positions in the blocks that are relative to the
 		// upper left corner
 		blocks[0] = new Block(colors[0], new Position(0, 0));
-		blocks[1] = new Block(colors[1], new Position(0, 1));
-		blocks[2] = new Block(colors[2], new Position(0, 2));
+		blocks[1] = new Block(colors[1], new Position(1, 0));
+		blocks[2] = new Block(colors[2], new Position(2, 0));
 	}
 
 	@Override

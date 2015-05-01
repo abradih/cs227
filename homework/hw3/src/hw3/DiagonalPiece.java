@@ -10,8 +10,8 @@ public class DiagonalPiece extends AbstractPiece {
 
 	public DiagonalPiece(Position givenPosition, Color[] colors) {
 		super(givenPosition);
-		if (colors.length != 2){
-			throw new IllegalArgumentException("Array should have 2 colors!"); 
+		if (colors.length != 2) {
+			throw new IllegalArgumentException("Array should have 2 colors!");
 		}
 		blocks = new Block[2];
 
@@ -50,11 +50,15 @@ public class DiagonalPiece extends AbstractPiece {
 		return cloned;
 	}
 
-
 	@Override
 	public void transform() {
-		blocks[0].setPosition(new Position(0,1));
-		blocks[1].setPosition(new Position(1,0));
+		if (blocks[0].getPosition().getRow() == 0 && blocks[0].getPosition().getCol() == 0) {
+			blocks[0].setPosition(new Position(0, 1));
+			blocks[1].setPosition(new Position(1, 0));
+		} else {
+			blocks[0].setPosition(new Position(0, 0));
+			blocks[1].setPosition(new Position(1, 1));
+		}
 	}
-	
+
 }
