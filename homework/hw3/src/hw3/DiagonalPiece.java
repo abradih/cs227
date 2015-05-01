@@ -51,4 +51,10 @@ public class DiagonalPiece extends AbstractPiece {
 	}
 
 
+	@Override
+	public void transform() {
+		blocks[0].setPosition(new Position(0,1));
+		blocks[1].setPosition(new Position(1,0));
+	}
+	
 }

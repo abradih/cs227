@@ -1,10 +1,10 @@
 package hw3;
 
-import java.awt.Color;
-
 import hw3.api.IPolyomino;
 import hw3.api.Position;
 import hw3.impl.Block;
+
+import java.awt.Color;
 
 public class LPiece extends AbstractPiece {
 
@@ -64,4 +64,10 @@ public class LPiece extends AbstractPiece {
 		return cloned;
 	}
 
+
+	@Override
+	public void transform() {
+		blocks[0].setPosition(new Position(0,2));
+	}
+	
 }
