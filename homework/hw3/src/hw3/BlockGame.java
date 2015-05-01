@@ -1,16 +1,38 @@
 package hw3;
 
-import java.util.ArrayList;
-
 import hw3.api.IPolyominoGenerator;
 import hw3.api.Position;
 import hw3.impl.AbstractBlockGame;
 import hw3.impl.GridCell;
 
+import java.awt.Color;
+import java.util.ArrayList;
+import java.util.Random;
+
 public class BlockGame extends AbstractBlockGame {
 
-	protected BlockGame(IPolyominoGenerator generator) {
+	public BlockGame(IPolyominoGenerator generator) {
 		super(generator);
+	}
+
+	public BlockGame(IPolyominoGenerator generator, Random rand) {
+		super(generator);
+		// make a grid starting at the bottom and moving up each row
+		// for each row every other block is assigned a random color
+		GridCell[][] grid = getGrid();
+		int x = grid.length - 1;
+		for (int i = 0; i < 7; i++) {
+			int y = 0;
+			if (x % 2 == 1) {
+				y = 1;
+			}
+			while (y < grid[x].length) {
+				Color c = AbstractBlockGame.COLORS[rand.nextInt(AbstractBlockGame.COLORS.length)];
+				grid[x][y] = new GridCell(c);
+				y += 2;
+			}
+			x--;
+		}
 	}
 
 	@Override

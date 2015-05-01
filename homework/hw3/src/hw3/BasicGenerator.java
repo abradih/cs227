@@ -9,7 +9,7 @@ import hw3.api.Position;
 import hw3.impl.AbstractBlockGame;
 
 public class BasicGenerator implements IPolyominoGenerator {
-	protected Random random;
+	private Random random;
 
 	public BasicGenerator(Random random) {
 		this.random = random;

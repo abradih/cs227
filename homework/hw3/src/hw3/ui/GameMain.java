@@ -6,6 +6,7 @@ package hw3.ui;
 //import hw3.BlockGame;
 
 import hw3.BasicGenerator;
+import hw3.BlockGame;
 import hw3.api.IGame;
 import hw3.example.SampleGame;
 import hw3.impl.BasicPlayLevel;
@@ -36,14 +37,14 @@ public class GameMain
     // EDIT BELOW to create BlockGame instead of SampleGame
     
     // Use BasicGenerator and initialize the game with the checkerboard pattern
-    //Random rand = new Random();
-    //IGame game = new BlockGame(new BasicGenerator(rand), rand);
+    Random rand = new Random();
+    IGame game = new BlockGame(new BasicGenerator(rand), rand);
 
     // Use the SampleGenerator, start with a blank grid
     //IGame game = new BlockGame(new SampleGenerator());
     
     // Try out the sample game only
-    IGame game = new SampleGame(new BasicGenerator(new Random()));
+   // IGame game = new BlockGame(new BasicGenerator(new Random()));
     
     BasicPlayLevel level = new BasicPlayLevel();
     GamePanel panel = new GamePanel(game, level);
