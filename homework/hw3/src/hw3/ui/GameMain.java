@@ -5,10 +5,10 @@ package hw3.ui;
 //import hw3.BasicGenerator;
 //import hw3.BlockGame;
 
+import hw3.BasicGenerator;
 import hw3.api.IGame;
-import hw3.impl.BasicPlayLevel;
 import hw3.example.SampleGame;
-import hw3.example.SampleGenerator;
+import hw3.impl.BasicPlayLevel;
 
 import java.awt.Dimension;
 import java.util.Random;
@@ -43,7 +43,7 @@ public class GameMain
     //IGame game = new BlockGame(new SampleGenerator());
     
     // Try out the sample game only
-    IGame game = new SampleGame(new SampleGenerator());
+    IGame game = new SampleGame(new BasicGenerator(new Random()));
     
     BasicPlayLevel level = new BasicPlayLevel();
     GamePanel panel = new GamePanel(game, level);

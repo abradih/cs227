@@ -25,8 +25,31 @@ public class LPiece extends AbstractPiece {
 
 	@Override
 	public Block[] getBlocks() {
-		// TODO Auto-generated method stub
-		return null;
+		Block[] toReturn = new Block[4];
+
+		// we need to return absolute positions in the grid, so add to
+		// row and column of upper left corner
+		Position p = new Position(blocks[0].getPosition());
+		p.setRow(p.getRow() + pos.getRow());
+		p.setCol(p.getCol() + pos.getCol());
+		toReturn[0] = new Block(blocks[0].getColorHint(), p);
+
+		p = new Position(blocks[1].getPosition());
+		p.setRow(p.getRow() + pos.getRow());
+		p.setCol(p.getCol() + pos.getCol());
+		toReturn[1] = new Block(blocks[1].getColorHint(), p);
+
+		p = new Position(blocks[2].getPosition());
+		p.setRow(p.getRow() + pos.getRow());
+		p.setCol(p.getCol() + pos.getCol());
+		toReturn[2] = new Block(blocks[2].getColorHint(), p);
+		
+		p = new Position(blocks[3].getPosition());
+		p.setRow(p.getRow() + pos.getRow());
+		p.setCol(p.getCol() + pos.getCol());
+		toReturn[3] = new Block(blocks[3].getColorHint(), p);
+		
+		return toReturn;
 	}
 
 	@Override
