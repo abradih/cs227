@@ -6,8 +6,21 @@ import hw3.impl.Block;
 
 import java.awt.Color;
 
+/**
+ * Defines a L game piece.
+ * 
+ * @author Amber Aldrich
+ *
+ */
 public class LPiece extends AbstractPiece {
-
+	/**
+	 * Creates a L game piece.
+	 * 
+	 * @param givenPosition
+	 *            Defines starting position of the game piece.
+	 * @param colors
+	 *            Defines the colors of each of the blocks in the game piece.
+	 */
 	public LPiece(Position givenPosition, Color[] colors) {
 		super(givenPosition);
 		if (colors.length != 4) {

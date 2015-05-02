@@ -6,8 +6,21 @@ import hw3.api.IPolyomino;
 import hw3.api.Position;
 import hw3.impl.Block;
 
+/**
+ * Defines a I game piece.
+ * 
+ * @author Amber Aldrich
+ *
+ */
 public class IPiece extends AbstractPiece {
-
+	/**
+	 * Creates a I game piece.
+	 * 
+	 * @param givenPosition
+	 *            Defines starting position of the game piece.
+	 * @param colors
+	 *            Defines the colors of each of the blocks in the game piece.
+	 */
 	public IPiece(Position givenPosition, Color[] colors) {
 		super(givenPosition);
 		if (colors.length != 3) {

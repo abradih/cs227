@@ -8,9 +8,26 @@ import hw3.api.IPolyominoGenerator;
 import hw3.api.Position;
 import hw3.impl.AbstractBlockGame;
 
+/**
+ * Randomly picks next block for game piece: Ipiece 60%, Lpiece 20% and Diagonal
+ * Piece 20% of the time.
+ * 
+ * @author Amber Aldrich
+ *
+ */
 public class BasicGenerator implements IPolyominoGenerator {
+	/**
+	 * Random number generator for picking what game piece.
+	 */
 	private Random random;
 
+	/**
+	 * Constructs a BasicGenerator Ipiece 60%, Lpiece 20% and Diagonal Piece 20%
+	 * of the time.
+	 * 
+	 * @param random
+	 *            the random number generator for picking game piece.
+	 */
 	public BasicGenerator(Random random) {
 		this.random = random;
 	}
@@ -31,9 +48,10 @@ public class BasicGenerator implements IPolyominoGenerator {
 	}
 
 	/**
-	 * Returns a array of random colors 
+	 * Returns a array of random colors
+	 * 
 	 * @param n number of colors to return
-	 * @return
+	 * @return Returns a array of random colors
 	 */
 	private Color[] getRandomColors(int n) {
 		Color[] c = new Color[n];

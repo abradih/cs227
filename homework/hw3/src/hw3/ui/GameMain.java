@@ -8,7 +8,6 @@ package hw3.ui;
 import hw3.BasicGenerator;
 import hw3.BlockGame;
 import hw3.api.IGame;
-import hw3.example.SampleGame;
 import hw3.impl.BasicPlayLevel;
 
 import java.awt.Dimension;

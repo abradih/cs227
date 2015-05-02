@@ -6,8 +6,21 @@ import hw3.api.IPolyomino;
 import hw3.api.Position;
 import hw3.impl.Block;
 
+/**
+ * Defines a diagonal game piece.
+ * 
+ * @author Amber Aldrich
+ *
+ */
 public class DiagonalPiece extends AbstractPiece {
-
+	/**
+	 * Creates a diagonal game piece.
+	 * 
+	 * @param givenPosition
+	 *            Defines starting position of the game piece.
+	 * @param colors
+	 *            Defines the colors of each of the blocks in the game piece.
+	 */
 	public DiagonalPiece(Position givenPosition, Color[] colors) {
 		super(givenPosition);
 		if (colors.length != 2) {

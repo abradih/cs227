@@ -6,10 +6,25 @@ import hw3.api.IPolyomino;
 import hw3.api.Position;
 import hw3.impl.Block;
 
+/**
+ * Abstract implementation of IPolyomino for a game piece.
+ * Defines shared behaviors for all game pieces.
+ * @author Amber Aldrich
+ */
 public abstract class AbstractPiece implements IPolyomino {
+	/**
+	 * Defines the position of game piece.
+	 */
 	protected Position pos;
+	/**
+	 * Holds color and position of each game piece block.
+	 */
 	protected Block[] blocks;
 
+	/**
+	 * Constructs an abstract piece and sets its position.
+	 * @param givenPosition
+	 */
 	public AbstractPiece(Position givenPosition) {
 		pos = givenPosition;
 	}

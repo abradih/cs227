@@ -9,12 +9,31 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * Extends AbstractBlockGame to implement the game.
+ * @author Amber Aldrich
+ *
+ */
 public class BlockGame extends AbstractBlockGame {
 
+	/**
+	 * Tracks game score, the number of blocks collapsed.
+	 */
+	private int score;
+	
+	/**
+	 * Creates a game with an empty grid.
+	 * @param generator Game block generator.
+	 */
 	public BlockGame(IPolyominoGenerator generator) {
 		super(generator);
 	}
-
+	
+	/**
+	 * Creates a game with a checkerboard grid. 
+	 * @param generator Game block Generator.
+	 * @param rand Generator for checkerboad. 
+	 */
 	public BlockGame(IPolyominoGenerator generator, Random rand) {
 		super(generator);
 		// make a grid starting at the bottom and moving up each row
@@ -45,71 +64,58 @@ public class BlockGame extends AbstractBlockGame {
 				GridCell cur = grid[i][i2];
 				matches.add(new Position(i, i2));
 
-				if ((i2 - 1) >= 0) {
+				if (cur != null) {
 					// left
-					if (cur.matches(grid[i][i2 - 1])) {
-						matches.add(new Position(i, i2 - 1));
-					}
-					if ((i - 1) > 0) {
-						// upper left
-						if (cur.matches(grid[i - 1][i2 - 1])) {
-							matches.add(new Position(i - 1, i2 - 1));
+					if ((i2 - 1) >= 0) {
+						if (grid[i][i2 - 1] != null && cur.matches(grid[i][i2 - 1])) {
+							matches.add(new Position(i, i2 - 1));
 						}
 					}
-					if ((i + 1) < grid.length) {
-						// down left
-						if (cur.matches(grid[i + 1][i2 - 1])) {
-							matches.add(new Position(i + 1, i2 - 1));
-						}
-					}
-				}
-				if ((i2 + 1) < grid[i].length) {
-					// right
-					if (cur.matches(grid[i][i2 + 1])) {
-						matches.add(new Position(i, i2 + 1));
-					}
-					if ((i - 1) > 0) {
-						// upper right
-						if (cur.matches(grid[i - 1][i2 + 1])) {
-							matches.add(new Position(i - 1, i2 + 1));
-						}
-					}
-					if ((i + 1) < grid.length) {
-						// down right
-						if (cur.matches(grid[i + 1][i2 + 1])) {
-							matches.add(new Position(i + 1, i2 + 1));
-						}
-					}
-				}
-				if ((i - 1) > 0) {
-					// up
-					if (cur.matches(grid[i - 1][i2])) {
-						matches.add(new Position(i - 1, i2));
-					}
-				}
-				if ((i + 1) < grid.length) {
-					// down
-					if (cur.matches(grid[i + 1][i2])) {
-						matches.add(new Position(i + 1, i2));
-					}
-				}
 
-				// if there are 2 matching neighbors add the current and the
-				// matches to list
-				if (matches.size() > 3) {
-					deadCells.addAll(matches);
+					// right
+					if ((i2 + 1) < grid[i].length) {
+						if (grid[i][i2 + 1] != null && cur.matches(grid[i][i2 + 1])) {
+							matches.add(new Position(i, i2 + 1));
+						}
+					}
+					
+					// up
+					if ((i - 1) > 0) {
+						if (grid[i - 1][i2] != null && cur.matches(grid[i - 1][i2])) {
+							matches.add(new Position(i - 1, i2));
+						}
+					}
+					
+					// down
+					if ((i + 1) < grid.length) {
+						if (grid[i + 1][i2] != null && cur.matches(grid[i + 1][i2])) {
+							matches.add(new Position(i + 1, i2));
+						}
+					}
+
+					// if there are 2 matching neighbors add the current and the
+					// matches to list
+					if (matches.size() >= 3) {
+						deadCells.addAll(matches);
+					}
 				}
 			}
-
 		}
-
-		return deadCells;
+		
+		// strip duplicates
+		ArrayList<Position> noDuplicates = new ArrayList<Position>();
+		while (deadCells.size() > 0){
+			Position p = deadCells.remove(0);
+			if(!noDuplicates.contains(p)){
+				noDuplicates.add(p);
+			}
+		}
+		score = score + noDuplicates.size();
+		return noDuplicates;
 	}
 
 	@Override
 	public int determineScore() {
-		// TODO Auto-generated method stub
-		return 0;
+		return score;
 	}
-
 }
