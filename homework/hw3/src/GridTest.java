@@ -2,6 +2,7 @@
 // Uncomment this line after you implement the BlockGame class
 //import hw3.BlockGame;
 
+import hw3.BlockGame;
 import hw3.api.Position;
 import hw3.example.SampleGenerator;
 import hw3.impl.AbstractBlockGame;
@@ -17,7 +18,7 @@ public class GridTest
     AbstractBlockGame game = null;
     
     // Uncomment this line after you implement the BlockGame class
-    //game = new BlockGame(new SampleGenerator());
+    game = new BlockGame(new SampleGenerator());
     
     GridCell[][] grid = game.getGrid();
     grid[2][3] = new GridCell(Color.RED);
@@ -27,7 +28,7 @@ public class GridTest
     ArrayList<Position> cells = game.determineCellsToCollapse();
     System.out.println(cells);
     System.out.println();
-    
+    System.out.println(game.getScore());
     printGrid(grid);
   }
   
